@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "moh",
+    "password": "123@Mmm@",
+    "database": "chatgpt_test",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "moh",
+    "password": "123@Mmm@",
+    "database": "chatgpt_test",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "moh",
+    "password": "123@Mmm@",
+    "database": "chatgpt_test",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
