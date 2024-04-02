@@ -1,4 +1,4 @@
-const { User } = require('../../../models');
+const { User, Post } = require('../../../models');
 
 const getUsers = async (req, res, next) => {
   try {
@@ -9,9 +9,30 @@ const getUsers = async (req, res, next) => {
   }
 };
 
+const getUser = async (req, res, next) => {
+    try {
+      const user = await User.findOne({
+        where: {
+          id: req.params.id,
+        },
+          include: {
+            model: Post, as: 'posts'
+        }
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  };
+
 const addUser = async (req, res, next) => {
     try {
-      const { firstName, lastName, email, phoneNumber } = req.body;
+      const { firstName, lastName, email, phoneNumber, username } = req.body;
       // Validate input if needed
   
       // Create user in the database
@@ -19,7 +40,8 @@ const addUser = async (req, res, next) => {
         firstName,
         lastName,
         email,
-        phoneNumber
+        phoneNumber,
+        username
       });
   
       res.status(201).json(newUser);
@@ -31,4 +53,4 @@ const addUser = async (req, res, next) => {
   };
 
 
-module.exports = { getUsers, addUser };
+module.exports = { getUsers, addUser, getUser };
