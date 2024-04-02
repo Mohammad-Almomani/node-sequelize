@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./models");
 // const sequelize = require('./config/config.json');
 const usersRoute = require("./modules/user/routes/users.route");
+const postsRoute = require("./modules/post/routes/posts.route");
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 
 // Routes
 app.use("/users", usersRoute);
+app.use("/posts", postsRoute);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
